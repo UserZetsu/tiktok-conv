@@ -111,17 +111,17 @@ def process_videos_in_folder(folder, prefix, output_folder):
         print(f"Saved {csv_filename}")
 
 # Process for ratdanceCSV
-process_videos_in_folder('ratdance/train', 'train', 'ratdanceCSV/train')
-process_videos_in_folder('ratdance/val', 'val', 'ratdanceCSV/val')
-process_videos_in_folder('ratdance/test', 'test', 'ratdanceCSV/test')
+# process_videos_in_folder('ratdance/train', 'train', 'ratdanceCSV/train')
+# process_videos_in_folder('ratdance/val', 'val', 'ratdanceCSV/val')
+# process_videos_in_folder('ratdance/test', 'test', 'ratdanceCSV/test')
 
-# Process for negative_controlCSV
-process_videos_in_folder('negative_control/train', 'train', 'negative_controlCSV/train')
-process_videos_in_folder('negative_control/val', 'val', 'negative_controlCSV/val')
-process_videos_in_folder('negative_control/test', 'test', 'negative_controlCSV/test')
+# # Process for negative_controlCSV
+# process_videos_in_folder('negative_control/train', 'train', 'negative_controlCSV/train')
+# process_videos_in_folder('negative_control/val', 'val', 'negative_controlCSV/val')
+# process_videos_in_folder('negative_control/test', 'test', 'negative_controlCSV/test')
 
 def add_label_column(csv_folder, label):
-    """Adds a label column to all CSV files in the specified folder."""
+    """ adds a label column to all CSV files in folder """
     for file in os.listdir(csv_folder):
         if file.endswith('.csv'):
             file_path = os.path.join(csv_folder, file)
@@ -134,3 +134,4 @@ def add_label_column(csv_folder, label):
 task_folders = [('ratdanceCSV/train', 'R'), ('ratdanceCSV/val', 'R'), ('ratdanceCSV/test', 'R'), ('negative_controlCSV/train', 'N'), ('negative_controlCSV/val', 'N'), ('negative_controlCSV/test', 'N')]
 for folder, label in task_folders:
     add_label_column(folder, label)
+
