@@ -97,41 +97,28 @@ def video_to_dataframe(path):
 def process_videos_in_folder(folder, prefix, output_folder):
     """ processes all videos in a given folder and saves them as CSV files in output folder """
     os.makedirs(output_folder, exist_ok=True)
-    video_files = [f for f in os.listdir(folder) if f.endswith(('.mp4', '.avi', '.mov'))]
+    video_files = [f for f in os.listdir(folder) if f.endswith(('.mp4'))]
     video_files.sort()
     
     for idx, video_file in enumerate(video_files, start=1):
         video_path = os.path.join(folder, video_file)
-        print(f"Processing {video_file}...")
+        print(f"processing {video_file}...")
         df = video_to_dataframe(video_path)
         match = re.search(r'_(\d+)', video_file)
         file_number = match.group(1) if match else 'unknown'
         csv_filename = os.path.join(output_folder, f"{prefix}{idx}_{file_number}.csv")
         df.to_csv(csv_filename, index=False)
-        print(f"Saved {csv_filename}")
+        print(f"saved {csv_filename}")
 
 # # process for ratdanceCSV
-process_videos_in_folder('ratdance/train', 'train', 'ratdanceCSV/train')
-process_videos_in_folder('ratdance/val', 'val', 'ratdanceCSV/val')
-process_videos_in_folder('ratdance/test', 'test', 'ratdanceCSV/test')
+# process_videos_in_folder('ratdance/train', 'train', 'ratdanceCSV/train')
+# process_videos_in_folder('ratdance/val', 'val', 'ratdanceCSV/val')
+# process_videos_in_folder('ratdance/test', 'test', 'ratdanceCSV/test')
 
 # # process for negative_controlCSV
-process_videos_in_folder('negative_control/train', 'train', 'negative_controlCSV/train')
-process_videos_in_folder('negative_control/val', 'val', 'negative_controlCSV/val')
-process_videos_in_folder('negative_control/test', 'test', 'negative_controlCSV/test')
+# process_videos_in_folder('negative_control/train', 'train', 'negative_controlCSV/train')
+# process_videos_in_folder('negative_control/val', 'val', 'negative_controlCSV/val')
+# process_videos_in_folder('negative_control/test', 'test', 'negative_controlCSV/test')
 
-def add_label_column(csv_folder, label):
-    """ adds a label column to all CSV files in folder """
-    for file in os.listdir(csv_folder):
-        if file.endswith('.csv'):
-            file_path = os.path.join(csv_folder, file)
-            df = pd.read_csv(file_path)
-            df.insert(0, "label", label)
-            df.to_csv(file_path, index=False)
-            print(f"Updated {file_path} with label {label}")
 
-# add an R as first column in each ratdance csv and an N to first column in each negative control
-task_folders = [('ratdanceCSV/train', 'R'), ('ratdanceCSV/val', 'R'), ('ratdanceCSV/test', 'R'), ('negative_controlCSV/train', 'N'), ('negative_controlCSV/val', 'N'), ('negative_controlCSV/test', 'N')]
-for folder, label in task_folders:
-    add_label_column(folder, label)
 
