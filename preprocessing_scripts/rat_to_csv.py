@@ -111,14 +111,14 @@ def process_videos_in_folder(folder, prefix, output_folder):
         print(f"saved {csv_filename}")
 
 # # process for ratdanceCSV
-# process_videos_in_folder('ratdance/train', 'train', 'ratdanceCSV/train')
-# process_videos_in_folder('ratdance/val', 'val', 'ratdanceCSV/val')
-# process_videos_in_folder('ratdance/test', 'test', 'ratdanceCSV/test')
+# process_videos_in_folder('ratdance/train', 'train', 'rat_dance_csvV/train')
+# process_videos_in_folder('ratdance/val', 'val', 'rat_dance_csv/val')
+# process_videos_in_folder('ratdance/test', 'test', 'rat_dance_csv/test')
 
 # # process for negative_controlCSV
-# process_videos_in_folder('negative_control/train', 'train', 'negative_controlCSV/train')
-# process_videos_in_folder('negative_control/val', 'val', 'negative_controlCSV/val')
-# process_videos_in_folder('negative_control/test', 'test', 'negative_controlCSV/test')
+# process_videos_in_folder('negative_control/train', 'train', 'neg_control_csv/train')
+# process_videos_in_folder('negative_control/val', 'val', 'neg_control_csv/val')
+# process_videos_in_folder('negative_control/test', 'test', 'neg_control_csv/test')
 
 
 
