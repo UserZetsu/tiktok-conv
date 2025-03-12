@@ -6,8 +6,8 @@ from tensorflow.keras.models import load_model
 from collections import deque  
 
 # Load Keras model and scaler
-model = load_model('pklfiles/rnn_quarter_model.keras')
-scaler = joblib.load('pklfiles/rnn_quarter_scaler.pkl')
+model = load_model('models/pklfiles/rnn_quarter_model.keras')
+scaler = joblib.load('models/pklfiles/rnn_quarter_scaler.pkl')
 
 # Define timesteps (should match training)
 timesteps = 30
@@ -71,6 +71,7 @@ def extract_live_landmarks(frame, pose_model, hands_model):
 
 # Real-time video capture
 cap = cv2.VideoCapture(0)
+cap.set(cv2.CAP_PROP_FPS, 60)
 
 # Add prediction buffer
 prediction_buffer = deque(maxlen=30)
@@ -96,7 +97,7 @@ with mp_pose.Pose(static_image_mode=False, model_complexity=2) as pose_model, \
             sequence_scaled = sequence_scaled.reshape(1, timesteps, -1)  # RNN shape
 
             prob = model.predict(sequence_scaled)[0][0]
-            predicted_label = 1 if prob > 0.75 else 0
+            predicted_label = 1 if prob > 0.65 else 0
         else:
             prob = 0.0
             predicted_label = 0
@@ -138,7 +139,7 @@ with mp_pose.Pose(static_image_mode=False, model_complexity=2) as pose_model, \
 
         # Show video
         cv2.imshow("Real-Time Pose Inference", frame)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        if cv2.waitKey(10) & 0xFF in [ord('q'), 27]:  # 27 = ESC
             break
 
 cap.release()
