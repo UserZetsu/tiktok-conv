@@ -16,10 +16,10 @@ This is a project for BMI 212 (2025) that is to create a deep learning model on 
 
 ### Roles: 
 
-* Hanson - Cleaning Extracting MP4 data
+* Hanson - Cleaning Extracting MP4 data & Cleaning Code + EDA
 
-* Jeff - Landmark Mapping and nn model building
+* Jeff - Landmark Mapping and real-time-inference module
 
-* Jackson - Tree-based model building
+* Jackson - Tree-based & RNN model building
 
 * Jayson - Logistic Regression model building 
