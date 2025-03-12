@@ -94,7 +94,7 @@ with mp_pose.Pose(static_image_mode=False, model_complexity=2) as pose_model, \
 
             x_min = max(0, min(x_coords) - 20)
             x_max = min(w, max(x_coords) + 20)
-            y_min = max(0, min(y_coords) - 15-)  # extend above head or ielse it will be eye level
+            y_min = max(0, min(y_coords) - 150)  # extend above head or ielse it will be eye level
             y_max = min(h, max(y_coords) + 20)
 
             # Box color red when not dancing else green
